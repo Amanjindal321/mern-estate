@@ -13,7 +13,7 @@ const Header = () => {
       urlParams.set('searchTerm', searchTerm);
       const searchQuery=urlParams.toString();
       navigate(`/search?${searchQuery}`)
-    };
+    }
 
     useEffect(()=>{
       const urlParams= new URLSearchParams(location.search);

@@ -21,7 +21,7 @@ const Listing = () => {
                 if(data.success===false){
                     setError(true);
                     setLoading(false);
-                    return;
+                    return
                 }
                 setListing(data);
                 setLoading(false);
