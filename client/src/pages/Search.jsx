@@ -18,7 +18,8 @@ const Search =() => {
 
     const [loading, setLoading]=useState(false);
     const [listing, setListing]=useState([])
-    console.log(listing);
+    const [showMore, setShowMore]=useState(false)
+    //console.log(listing);
 
     //console.log(sidebarData);
 
@@ -54,9 +55,15 @@ const Search =() => {
 
         const fetchListing=async()=>{
             setLoading(true)
+            setShowMore(false)
             const searchQuery=urlParams.toString();
             const res=await fetch(`/api/listing/get?${searchQuery}`)
             const data=await res.json();
+            if(data.length>7){  ///// change from 8 to 7
+                setShowMore(true)
+            }else{
+                setShowMore(false)
+            }
             setListing(data);
             setLoading(false)
         }
@@ -96,6 +103,22 @@ const Search =() => {
         urlParams.set('order', sidebarData.order);
         const searchQuery=urlParams.toString();
         navigate(`/search?${searchQuery}`)
+    }
+
+    const onShowMoreClick=async()=>{
+        const numberOfListings=listing.length;
+        const startIndex=numberOfListings;
+        const urlParams=new URLSearchParams(location.search)
+        urlParams.set('startIndex', startIndex);
+        const searchQuery=urlParams.toString();
+        const res=await fetch(`/api/listing/get?${searchQuery}`)
+        const data=await res.json();
+
+        if(data.length<8){    /// change from 9 to 8
+            setShowMore(false)
+        }
+        setListing([...listing, ...data])
+
     }
     return (
         <div className='flex flex-col md:flex-row'>
@@ -177,6 +200,12 @@ const Search =() => {
                         !loading && listing && listing.map((listings)=>(
                             <ListingItem key={listings._id} listings={listings}/> /// key={listing._id} to key={listings._id}
                         ))
+                    }
+
+                    {
+                        showMore && (
+                            <button onClick={onShowMoreClick} className='bg-blue-500 text-white-700 hover:underline p-7 rounded-lg py-2 px-4'>Show more</button>
+                        )
                     }
                 
                 </div>
