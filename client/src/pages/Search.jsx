@@ -59,7 +59,7 @@ const Search =() => {
             const searchQuery=urlParams.toString();
             const res=await fetch(`/api/listing/get?${searchQuery}`)
             const data=await res.json();
-            if(data.length>7){  ///// change from 8 to 7
+            if(data.length>8){  ///// change from 8 to 7
                 setShowMore(true)
             }else{
                 setShowMore(false)
@@ -114,7 +114,7 @@ const Search =() => {
         const res=await fetch(`/api/listing/get?${searchQuery}`)
         const data=await res.json();
 
-        if(data.length<8){    /// change from 9 to 8
+        if(data.length<9){    /// change from 9 to 8
             setShowMore(false)
         }
         setListing([...listing, ...data])
