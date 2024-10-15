@@ -5,7 +5,7 @@ const About = () => {
     <div className='max-w-6xl mx-auto flex flex-col gap-8 my-5'>
       <h1 className=' text-3xl font-semibold text-slate-700 '>About Us</h1>
 
-    <div className='flex flex-col gap-4 text-slate-700'>
+    <div className='flex flex-col gap-4 text-slate-500'>
      <p>Welcome to our Real Estate platform, your ultimate 
       destination for finding the best properties 
       for sale and rent. We aim to bridge the gap between property 
