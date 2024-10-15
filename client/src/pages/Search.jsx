@@ -198,7 +198,7 @@ const Search =() => {
                     }
                     {
                         !loading && listing && listing.map((listings)=>(
-                            <ListingItem key={listings._id} listings={listings}/> /// key={listing._id} to key={listings._id}
+                            <ListingItem key={listing._id} listings={listings}/> /// key={listing._id} to key={listings._id}
                         ))
                     }
 

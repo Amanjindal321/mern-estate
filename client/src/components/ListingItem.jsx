@@ -31,4 +31,4 @@ const ListingItem = ({listings}) => {
     )
 }
 
-export default ListingItem
+export default ListingItem;
